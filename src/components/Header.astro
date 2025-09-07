@@ -1,0 +1,118 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import TelegramIcon from "@assets/telegram.svg"
+import GithubIcon from "@assets/github.svg"
+import { Image } from 'astro:assets'
+
+type Props = HTMLAttributes<"div">
+const { ...props } = Astro.props
+---
+
+<div class="header" {...props}>
+	<div class="header-content">
+		<a href="/" class="logo">MrBoomDev</a>
+
+		<div class="header-content-items">
+			<a href="/" class="tab">Home</a>
+			<a href="/projects" class="tab">Projects</a>
+			<a href="/contact" class="tab">Contact</a>
+
+			<div class="socials">
+				<a href="https://t.me/MrBoomDev">
+					<Image src={TelegramIcon} title="Telegram" alt="Telegram icon" />
+				</a>
+
+				<a href="https://github.com/MrBoomDeveloper">
+					<Image src={GithubIcon} title="GitHub" alt="GitHub icon" />
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.header {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+
+	.header-content {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		max-width: 800px;
+		padding: 1rem;
+		gap: 1rem;
+	}
+
+	.header-content > a {
+		text-decoration: none;
+		transition: .1s;
+	}
+
+	.header-content > a:hover {
+		text-decoration: none;
+		opacity: .75;
+	}
+
+	.logo {
+		font-family: sans-serif;
+		font-weight: 800;
+		font-size: 1.6em;
+		color: rgb(240, 87, 255);
+	}
+
+	.header-content-items {
+		display: flex;
+		align-items: center;
+		gap: 1.6rem;
+	}
+
+	.socials {
+		display: flex;
+		align-items: center;
+		gap: .8rem;
+	}
+	
+	.header-content-items > a {
+		display: flex;
+		transition: .1s;
+	}
+
+	.header-content-items a:hover {
+		opacity: .75;
+	}
+
+	.tab {
+		position: relative;
+		text-decoration: none;
+		color: white;
+		font-size: 1.2em;
+		font-family: sans-serif;
+	}
+
+	.tab::after {
+		content: "";
+		display: block;
+		position: absolute;
+		bottom: -.2rem;
+		left: 50%;
+		right: 50%;
+		width: 0%;
+		height: .06em;
+		background-color: white;
+		transition: .2s;
+	}
+
+	.tab:hover::after {
+		width: 110%;
+		left: -5%;
+	}
+
+	.header-content-items img {
+		width: 1.8rem;
+		aspect-ratio: 1;
+		filter: invert(100%) sepia(5%) saturate(314%) hue-rotate(276deg) brightness(117%) contrast(100%);
+	}
+</style>

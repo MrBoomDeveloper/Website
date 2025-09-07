@@ -1,0 +1,41 @@
+---
+import Head from '@components/Head.astro';
+
+type Props = {
+	title?: string,
+	description?: string
+}
+
+const { 
+	title = "MrBoomDev - Frontend Developer", 
+	description = "I am a front-end developer who creates stylish and powerful sites and games without pc! From React to the LibGDX." 
+} = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<Head title={title} description={description} />
+	</head>
+
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	*, *::before, *::after {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	body {
+		background-color: #11071f;
+		color: #ffffff;
+	}
+</style>

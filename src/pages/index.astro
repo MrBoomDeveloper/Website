@@ -1,11 +1,91 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Html from '@layouts/Html.astro';
+import Header from '@components/Header.astro';
+import Button from '@components/Button.astro';
+import OutlinedButton from '@components/OutlinedButton.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Html>
+	<div class="hero-wrapper" style="position: relative">
+		<Header style="position: absolute" />
+
+		<div class="hero">
+			<!-- A hacky hack to fit content -->
+			<Header style={{ opacity: 0, pointerEvents: "none" }} />
+
+			<div class="hero-content">
+				<h3 class="label">I love to build beautiful stuff</h3>
+				<h1 class="title">Hey, I'm MrBoomDev!</h1>
+				<h3 class="description">I like to create stylish and epic games, websites and apps for mobile devices.</h3>
+
+				<div class="actions">
+					<a href="/more">
+						<Button text="See more" />
+					</a>
+
+					<a href="/contact">
+						<OutlinedButton text="Contact me" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<a href="/projects/awery" style="color: white">Check out Awery</a>
 </Layout>
+
+<style>
+	.hero-wrapper {
+		display: flex;
+		flex-direction: column;
+		height: min(80vh, 600px);
+	}
+	
+	.hero {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+
+	.hero-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: .4rem;
+		width: 100%;
+		max-width: 800px;
+		padding: 2rem;
+	}
+
+	.label {
+		color: #db39ff;
+		text-shadow: rgba(217, 48, 255, .568627451) 0 0 5px;
+		font-family: sans-serif;
+	}
+
+	.title {
+		font-family: sans-serif;
+		font-weight: 800;
+		font-size: 2.5em;
+		text-shadow: rgba(255, 255, 255, .25) 0 0 .4em;
+	}
+
+	.description {
+		margin-top: .4rem;
+		max-width: 500px;
+		line-height: 1.4em;
+		font-weight: 500;
+		font-family: sans-serif;
+		text-align: center;
+		color: #eedefa;
+	}
+
+	.actions {
+		margin-top: .8rem;
+		display: flex;
+		gap: .8rem;
+	}
+</style>

@@ -1,0 +1,29 @@
+---
+import Html from "@layouts/Html.astro";
+import Header from "@components/Header.astro";
+---
+
+<Html title="Page not found" description="Requested page isn't found!">
+	<Header />
+
+	<div class="error">
+		<div class="error-content">
+			<h1>Page not found</h1>
+			<p>Requested page was not found. Try changing your query.</p>
+		</div>
+	</div>
+</Html>
+
+<style>
+	.error {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.error-content {
+		width: 100%;
+		max-width: 800px;
+		padding: 1rem;
+	}
+</style>
