@@ -1,6 +1,8 @@
 ---
 import Html from "@layouts/Html.astro";
 import Header from "@components/Header.astro";
+import { localeStaticPaths } from "@i18n/translate";
+export const getStaticPaths = localeStaticPaths
 ---
 
 <Html title="Awery" description="A new way of enjoying anime">

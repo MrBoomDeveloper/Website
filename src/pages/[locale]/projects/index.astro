@@ -1,0 +1,14 @@
+---
+import { getLocaleFromUrl, localeStaticPaths } from '@i18n/translate';
+import Html from '@layouts/Html.astro';
+import Header from '@components/Header.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+export const getStaticPaths = localeStaticPaths;
+const locale = getLocaleFromUrl(Astro.url);
+---
+
+<Html>
+	<Header />
+	<a href={getRelativeLocaleUrl(locale, "/projects/awery")}>Awery</a>
+</Html>

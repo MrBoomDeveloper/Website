@@ -1,0 +1,28 @@
+{
+	"en": {
+		"home_title": "Hey, I'm MrBoomDev!",
+		"home_description": "I create stylish epic games, sorfware and websites for all platforms",
+		"home": "Home",
+		"projects": "Projects",
+		"contact": "Contact",
+		"my_projects": "My projects",
+		"contact_me": "Contact me",
+		"name": "Name",
+		"email": "Email",
+		"message": "Message",
+		"send": "Send"
+	},
+
+	"ru": {
+		"home_title": "Привет, я MrBoomDev!",
+		"home": "Главная",
+		"projects": "Проекты",
+		"contact": "Связаться",
+		"my_projects": "Мои проекты",
+		"contact_me": "Связаться со мной",
+		"name": "Имя",
+		"email": "Электронная почта",
+		"message": "Сообщение",
+		"send": "Отправить"
+	}
+}

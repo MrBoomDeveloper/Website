@@ -1,0 +1,78 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<"div"> {
+	name?: string,
+	placeholder?: string,
+	required?: boolean,
+	singleLine?: boolean,
+	class?: string
+}
+
+const { 
+	name,
+	placeholder,
+	required,
+	singleLine = true,
+	class: className, 
+	...props 
+} = Astro.props
+---
+
+<div class:list={["container", className]} {...props}>
+	{singleLine
+		? <input name={name} placeholder={placeholder} required={required} class="field" /> 
+		: <textarea name={name} placeholder={placeholder} required={required} class="field" />}
+</div>
+
+<style lang="scss">
+	.container {
+		display: flex;
+		position: relative;
+		background-color: rgba(85, 78, 114, 0.1);
+		border-radius: .6rem;
+
+		.field {
+			flex-grow: 1;
+			font-family: poppins, sans-serif;
+			background-color: transparent;
+			border: transparent none 0;
+			padding: 1rem 1.2rem;
+			color: white;
+			font-size: .925em;
+			resize: none;
+			transition: .2s;
+
+			&::placeholder {
+				color: #67526D;
+			}
+
+			&:focus {
+				outline: transparent none 0;
+
+				&::placeholder {
+					color: #B895B4;
+				}
+			}
+		}
+
+		&::after {
+			content: "";
+			display: block;
+			position: absolute;
+			left: .2rem;
+			bottom: 0;
+			width: calc(100% - .4rem);
+			height: 1px;
+			background-color: #67526D;
+			opacity: .5;
+			transition: .2s;
+		}
+
+		&:has(.field:focus) {
+			&::after {
+				background-color: #B895B4;
+			}
+		}
+	}
+</style>

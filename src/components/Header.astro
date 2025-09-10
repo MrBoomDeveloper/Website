@@ -3,34 +3,38 @@ import type { HTMLAttributes } from 'astro/types'
 import TelegramIcon from "@assets/telegram.svg"
 import GithubIcon from "@assets/github.svg"
 import { Image } from 'astro:assets'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import { getLocaleFromUrl, useTranslations } from '@i18n/translate'
 
 type Props = HTMLAttributes<"div">
 const { ...props } = Astro.props
+const locale = getLocaleFromUrl(Astro.url)
+const t = useTranslations(locale);
 ---
 
 <div class="header" {...props}>
 	<div class="header-content">
-		<a href="/" class="logo">MrBoomDev</a>
+		<a href={getRelativeLocaleUrl(locale)} class="logo">MrBoomDev</a>
 
 		<div class="header-content-items">
-			<a href="/" class="tab">Home</a>
-			<a href="/projects" class="tab">Projects</a>
-			<a href="/contact" class="tab">Contact</a>
+			<a href={getRelativeLocaleUrl(locale)} class="tab">{t("home")}</a>
+			<a href={getRelativeLocaleUrl(locale, "projects")} class="tab">{t("projects")}</a>
+			<a href={getRelativeLocaleUrl(locale, "contact")} class="tab">{t("contact")}</a>
 
 			<div class="socials">
 				<a href="https://t.me/MrBoomDev">
-					<Image src={TelegramIcon} title="Telegram" alt="Telegram icon" />
+					<Image src={TelegramIcon} title="Telegram" alt="Telegram icon" class="icon" />
 				</a>
 
 				<a href="https://github.com/MrBoomDeveloper">
-					<Image src={GithubIcon} title="GitHub" alt="GitHub icon" />
+					<Image src={GithubIcon} title="GitHub" alt="GitHub icon" class="icon" />
 				</a>
 			</div>
 		</div>
 	</div>
 </div>
 
-<style>
+<style lang="scss">
 	.header {
 		width: 100%;
 		display: flex;
@@ -46,27 +50,39 @@ const { ...props } = Astro.props
 		gap: 1rem;
 	}
 
-	.header-content > a {
-		text-decoration: none;
+	a {
 		transition: .1s;
-	}
 
-	.header-content > a:hover {
-		text-decoration: none;
-		opacity: .75;
+		&:hover {
+			opacity: .75;
+		}
+
+		&:active {
+			scale: .95;
+		}
 	}
 
 	.logo {
-		font-family: sans-serif;
+		font-family: poppins, sans-serif;
 		font-weight: 800;
 		font-size: 1.6em;
 		color: rgb(240, 87, 255);
+
+		&:hover {
+			opacity: .75;
+			text-shadow: rgba(217, 48, 255, .25) 0 0 2rem;
+		}
 	}
 
 	.header-content-items {
 		display: flex;
 		align-items: center;
 		gap: 1.6rem;
+
+		& > a {
+			display: flex;
+			transition: .1s;
+		}
 	}
 
 	.socials {
@@ -74,43 +90,34 @@ const { ...props } = Astro.props
 		align-items: center;
 		gap: .8rem;
 	}
-	
-	.header-content-items > a {
-		display: flex;
-		transition: .1s;
-	}
-
-	.header-content-items a:hover {
-		opacity: .75;
-	}
 
 	.tab {
 		position: relative;
 		text-decoration: none;
 		color: white;
-		font-size: 1.2em;
-		font-family: sans-serif;
+		font-size: 1.1em;
+		font-family: poppins, sans-serif;
+
+		&::after {
+			content: "";
+			display: block;
+			position: absolute;
+			bottom: -.2rem;
+			left: 50%;
+			right: 50%;
+			width: 0%;
+			height: .06em;
+			background-color: white;
+			transition: .2s;
+		}
+
+		&:hover::after {
+			width: 110%;
+			left: -5%;
+		}
 	}
 
-	.tab::after {
-		content: "";
-		display: block;
-		position: absolute;
-		bottom: -.2rem;
-		left: 50%;
-		right: 50%;
-		width: 0%;
-		height: .06em;
-		background-color: white;
-		transition: .2s;
-	}
-
-	.tab:hover::after {
-		width: 110%;
-		left: -5%;
-	}
-
-	.header-content-items img {
+	.icon {
 		width: 1.8rem;
 		aspect-ratio: 1;
 		filter: invert(100%) sepia(5%) saturate(314%) hue-rotate(276deg) brightness(117%) contrast(100%);
