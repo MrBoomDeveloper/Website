@@ -1,15 +1,24 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n'
 import Html from "@layouts/Html.astro";
 import Header from "@components/Header.astro";
+import Button from "@components/Button.astro";
+import { getLocaleFromUrl, useTranslations } from "@i18n/translate";
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 
 <Html title="Page not found" description="Requested page isn't found!">
-	<Header />
+	<Header style="position: fixed" />
 
 	<div class="error">
 		<div class="error-content">
-			<h1>Page not found</h1>
-			<p>Requested page was not found. Try changing your query.</p>
+			<h1>{t("404_title")}</h1>
+			<p>{t("404_message")}</p>
+
+			<a href={getRelativeLocaleUrl(locale)} class="button">
+				<Button text={t("go_to_home")} />
+			</a>
 		</div>
 	</div>
 </Html>
@@ -18,12 +27,31 @@ import Header from "@components/Header.astro";
 	.error {
 		display: flex;
 		justify-content: center;
-		width: 100%;
+		align-items: center;
+		width: 100vw;
+		height: 100vh;
 	}
 
 	.error-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: .4rem;
 		width: 100%;
 		max-width: 800px;
 		padding: 1rem;
+	}
+
+	h1, p {
+		font-family: poppins, sans-serif;
+		text-align: center;
+	}
+
+	p {
+		max-width: 350px;
+	}
+
+	.button {
+		margin-top: 1rem;
 	}
 </style>

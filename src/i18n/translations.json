@@ -1,5 +1,6 @@
 {
 	"en": {
+		"home_label": "I love to build beautiful stuff",
 		"home_title": "Hey, I'm MrBoomDev!",
 		"home_description": "I create stylish epic games, sorfware and websites for all platforms",
 		"home": "Home",
@@ -10,11 +11,16 @@
 		"name": "Name",
 		"email": "Email",
 		"message": "Message",
-		"send": "Send"
+		"send": "Send",
+		"404_title": "Page not found",
+		"404_message": "Requested page was not found. Maybe it was deleted from the website, or maybe you mistyped the url.",
+		"go_to_home": "Go to the homepage"
 	},
 
 	"ru": {
+		"home_label": "Я создаю стильные штучки",
 		"home_title": "Привет, я MrBoomDev!",
+		"home_description": "Я создаю стильные эпические игры, софт и веб-сайты для всех платформ",
 		"home": "Главная",
 		"projects": "Проекты",
 		"contact": "Связаться",
@@ -23,6 +29,9 @@
 		"name": "Имя",
 		"email": "Электронная почта",
 		"message": "Сообщение",
-		"send": "Отправить"
+		"send": "Отправить",
+		"404_title": "Страница не найдена",
+		"404_message": "Запрошенная страница не найдена. Возможно, он был удален с сайта, или вы неправильно ввели URL-адрес.",
+		"go_to_home": "Перейти на главную"
 	}
 }

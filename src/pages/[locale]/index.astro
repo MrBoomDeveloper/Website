@@ -1,4 +1,5 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n'
 import Html from '@layouts/Html.astro';
 import Header from '@components/Header.astro';
 import Button from '@components/Button.astro';
@@ -6,10 +7,11 @@ import OutlinedButton from '@components/OutlinedButton.astro';
 import Input from '@components/Input.astro';
 import Footer from '@components/Footer.astro';
 import SendIcon from '@assets/send.svg'
-import { getLocaleFromUrl, locales, localeStaticPaths, useTranslations } from '@i18n/translate';
+import { getLocaleFromUrl, localeStaticPaths, useTranslations } from '@i18n/translate';
 
 export const getStaticPaths = localeStaticPaths
-const t = useTranslations(getLocaleFromUrl(Astro.url))
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 
 <Html>
@@ -48,7 +50,7 @@ const t = useTranslations(getLocaleFromUrl(Astro.url))
 			<Header style={{ opacity: 0, pointerEvents: "none" }} />
 
 			<div class="hero-content">
-				<h3 class="label">I love to build beautiful stuff</h3>
+				<h3 class="label">{t("home_label")}</h3>
 				<h1 class="title">{t("home_title")}</h1>
 				<h3 class="description">{t("home_description")}</h3>
 
@@ -57,7 +59,7 @@ const t = useTranslations(getLocaleFromUrl(Astro.url))
 						<Button text="See more" />
 					</a>
 
-					<a href="/contact">
+					<a href={getRelativeLocaleUrl(locale, "contact")}>
 						<OutlinedButton text={t("contact_me")} />
 					</a>
 				</div>
@@ -153,9 +155,15 @@ const t = useTranslations(getLocaleFromUrl(Astro.url))
 		text-shadow: rgba(217, 48, 255, .5) 0 0 1rem;
 		font-family: poppins, sans-serif;
 		font-weight: 600;
+		text-align: center;
+
+		@media screen and (max-width: 500px) {
+			padding-inline: 2rem;
+		}
 	}
 
 	.title {
+		text-align: center;
 		font-family: poppins, sans-serif;
 		font-weight: 800;
 		font-size: 2.5em;
@@ -176,6 +184,14 @@ const t = useTranslations(getLocaleFromUrl(Astro.url))
 		margin-top: 1rem;
 		display: flex;
 		gap: .8rem;
+
+		@media screen and (max-width: 500px) {
+			flex-direction: column;
+
+			& > * > * {
+				width: 100%;
+			}
+		}
 	}
 
 	@mixin squareAnimation($id, $fromRotate, $rotate) {

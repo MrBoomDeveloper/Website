@@ -10,6 +10,11 @@ type Props = HTMLAttributes<"div">
 const { ...props } = Astro.props
 const locale = getLocaleFromUrl(Astro.url)
 const t = useTranslations(locale);
+
+const path = Astro.url.pathname;
+let tab = path.substring(path.indexOf("/") + 1);
+tab = tab.substring(tab.indexOf("/") + 1);
+tab = tab.substring(0, tab.indexOf("/")).trim();
 ---
 
 <div class="header" {...props}>
@@ -17,9 +22,9 @@ const t = useTranslations(locale);
 		<a href={getRelativeLocaleUrl(locale)} class="logo">MrBoomDev</a>
 
 		<div class="header-content-items">
-			<a href={getRelativeLocaleUrl(locale)} class="tab">{t("home")}</a>
-			<a href={getRelativeLocaleUrl(locale, "projects")} class="tab">{t("projects")}</a>
-			<a href={getRelativeLocaleUrl(locale, "contact")} class="tab">{t("contact")}</a>
+			<a href={getRelativeLocaleUrl(locale)} class:list={["tab", tab == "" ? "tab-selected" : ""]}>{t("home")}</a>
+			<a href={getRelativeLocaleUrl(locale, "projects")} class:list={["tab", tab == "projects" ? "tab-selected" : ""]}>{t("projects")}</a>
+			<a href={getRelativeLocaleUrl(locale, "contact")} class:list={["tab", tab == "contact" ? "tab-selected" : ""]}>{t("contact")}</a>
 
 			<div class="socials">
 				<a href="https://t.me/MrBoomDev">
@@ -111,7 +116,7 @@ const t = useTranslations(locale);
 			transition: .2s;
 		}
 
-		&:hover::after {
+		&:is(.tab-selected, :hover)::after {
 			width: 110%;
 			left: -5%;
 		}
