@@ -8,6 +8,7 @@ import Input from '@components/Input.astro';
 import Footer from '@components/Footer.astro';
 import SendIcon from '@assets/send.svg'
 import { getLocaleFromUrl, localeStaticPaths, useTranslations } from '@i18n/translate';
+import ContactForm from '@components/ContactForm.astro';
 
 export const getStaticPaths = localeStaticPaths
 const locale = getLocaleFromUrl(Astro.url);
@@ -80,25 +81,11 @@ const t = useTranslations(locale);
 	<div class="section">
 		<div class="section-content contact">
 			<div class="section-header" style="margin-bottom: .6rem">
-				<hr />
 				<h2 class="section-title">{t("contact_me")}</h2>
 				<hr />
 			</div>
 
-			<form action="https://api.web3forms.com/submit" method="post">
-				<div class="contact-fields">
-					<div class="contact-main">
-						<input type="hidden" name="access_key" value="2fdf5449-091f-4a24-bbbb-272e9e27d0b3" />
-						<Input name="name" placeholder={t("name")} required />
-						<Input name="email" placeholder={t("email")} required />
-					</div>
-
-					<Input name="message" placeholder={t("message")} required singleLine={false} class="contact-message" />
-				</div>
-
-				<Button text={t("send")} icon={SendIcon} type="submit" style="display: inline-block; margin-top: 1rem; margin-bottom: 1rem" />
-			</form>
-			
+			<ContactForm />
 		</div>
 	</div>
 
@@ -302,21 +289,5 @@ const t = useTranslations(locale);
 				scale: 1 .25;
 			}
 		}
-	}
-
-	.contact-fields {
-		display: flex;
-		gap: .6rem;
-	}
-
-	.contact-main {
-		display: flex;
-		flex-direction: column;
-		gap: .6rem;
-		flex-grow: 1;
-	}
-
-	.contact-message {
-		flex-grow: 4;
 	}
 </style>
