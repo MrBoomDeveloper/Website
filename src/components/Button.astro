@@ -5,22 +5,26 @@ import { Image } from 'astro:assets'
 interface Props extends HTMLAttributes<"div"> {
 	text: string,
 	icon?: ((_props: astroHTML.JSX.SVGAttributes) => any) & ImageMetadata,
-	type?: "button" | "submit" | "reset" | null | undefined
+	iconScale?: number | undefined,
+	type?: "button" | "submit" | "reset" | null | undefined,
+	class?: string | undefined
 }
 
 const { 
 	text,
 	icon,
 	type,
+	iconScale,
+	class: className,
 	...props
 } = Astro.props
 ---
 
-<button type={type} class="container" {...props}>
+<button type={type} class:list={[ "container", className ]} {...props}>
 	<span class="label">{text}</span>
 	{icon ? <div class="icon-wrapper">
-		<Image src={icon} alt="" class="icon" />
-		<Image src={icon} alt="" class="icon icon-hover" />
+		<Image src={icon} alt="" class="icon" style={{ scale: iconScale ?? 1 }} />
+		<Image src={icon} alt="" class="icon icon-hover" style={{ scale: iconScale ?? 1 }} />
 	</div> : ""}
 </button>
 

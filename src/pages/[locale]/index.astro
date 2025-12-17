@@ -9,6 +9,7 @@ import Footer from '@components/Footer.astro';
 import SendIcon from '@assets/send.svg'
 import { getLocaleFromUrl, localeStaticPaths, useTranslations } from '@i18n/translate';
 import ContactForm from '@components/ContactForm.astro';
+import FeaturedProjects from '@components/FeaturedProjects.astro';
 
 export const getStaticPaths = localeStaticPaths
 const locale = getLocaleFromUrl(Astro.url);
@@ -56,8 +57,8 @@ const t = useTranslations(locale);
 				<h3 class="description">{t("home_description")}</h3>
 
 				<div class="actions">
-					<a href="/more">
-						<Button text="See more" />
+					<a href={getRelativeLocaleUrl(locale, "projects")}>
+						<Button text="See projects" />
 					</a>
 
 					<a href={getRelativeLocaleUrl(locale, "contact")}>
@@ -69,18 +70,20 @@ const t = useTranslations(locale);
 	</div>
 
 	<div class="section section-dim">
-		<div class="section-content">
+		<div class="section-content projects">
 			<div class="section-header">
 				<hr />
 				<h2 class="section-title">{t("my_projects")}</h2>
 				<hr />
 			</div>
+
+			<FeaturedProjects />
 		</div>
 	</div>
 
 	<div class="section">
 		<div class="section-content contact">
-			<div class="section-header" style="margin-bottom: .6rem">
+			<div class="section-header" style="margin-bottom: .4rem">
 				<h2 class="section-title">{t("contact_me")}</h2>
 				<hr />
 			</div>
@@ -288,6 +291,18 @@ const t = useTranslations(locale);
 				opacity: .25;
 				scale: 1 .25;
 			}
+		}
+	}
+
+	.contact {
+		margin-bottom: 1.4rem;
+	}
+
+	.projects {
+		margin-bottom: 1rem;
+
+		.section-title {
+			margin-bottom: 1rem;
 		}
 	}
 </style>

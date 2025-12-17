@@ -11,6 +11,8 @@ const t = useTranslations(locale);
 <form action="https://api.web3forms.com/submit" method="post">
     <input type="hidden" name="access_key" value="2fdf5449-091f-4a24-bbbb-272e9e27d0b3" />
 
+    <p class="message">Do you have any questions? You can send me an email and i'll try to answer as quick as possible 🙃</p>
+
     <div class="contact-form-desktop">
         <div class="contact-form-desktop-info">
             <Input name="name" placeholder={t("name")} required />
@@ -36,6 +38,17 @@ const t = useTranslations(locale);
 </form>
 
 <style>
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .message {
+        font-family: poppins, sans-serif;
+        margin-bottom: .6rem;
+    }
+
     .contact-form-desktop {
         display: none;
 
