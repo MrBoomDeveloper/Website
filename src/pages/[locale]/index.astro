@@ -7,9 +7,12 @@ import OutlinedButton from '@components/OutlinedButton.astro';
 import Input from '@components/Input.astro';
 import Footer from '@components/Footer.astro';
 import SendIcon from '@assets/send.svg'
+import BocchiBurgerImage from "@assets/bocchi_burger.webp";
+import FoxyGif from "@assets/foxy.gif";
 import { getLocaleFromUrl, localeStaticPaths, useTranslations } from '@i18n/translate';
 import ContactForm from '@components/ContactForm.astro';
 import FeaturedProjects from '@components/FeaturedProjects.astro';
+import { Image } from 'astro:assets';
 
 export const getStaticPaths = localeStaticPaths
 const locale = getLocaleFromUrl(Astro.url);
@@ -45,6 +48,11 @@ const t = useTranslations(locale);
 			</script>
 		</div>
 
+		<Image 
+			src={FoxyGif}
+			class="foxy"
+			alt="Foxy pixel art running animation" />
+
 		<Header style="position: absolute" />
 
 		<div class="hero">
@@ -67,9 +75,37 @@ const t = useTranslations(locale);
 				</div>
 			</div>
 		</div>
+
+		<script>
+			const hero = document.querySelector(".hero-content")!!;
+
+			document.addEventListener("scroll", () => {
+				hero.style.translate = `0 ${window.scrollY / 3}px`;
+				hero.style.opacity = 1 - window.scrollY / 800;
+			});
+		</script>
 	</div>
 
 	<div class="section section-dim">
+		<div class="section-content">
+			<div class="section-header">
+				<hr />
+				<h2 class="section-title">{t("aboutme")}</h2>
+				<hr />
+			</div>
+
+			<div class="aboutme">
+				<p class="aboutme-text">{t("aboutme_description")}</p>
+				
+				<Image 
+					alt="Bocchi eats burger"
+					class="aboutme-image"
+					src={BocchiBurgerImage} />
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
 		<div class="section-content projects">
 			<div class="section-header">
 				<hr />
@@ -81,7 +117,7 @@ const t = useTranslations(locale);
 		</div>
 	</div>
 
-	<div class="section">
+	<div class="section section-dim">
 		<div class="section-content contact">
 			<div class="section-header" style="margin-bottom: .4rem">
 				<h2 class="section-title">{t("contact_me")}</h2>
@@ -99,7 +135,31 @@ const t = useTranslations(locale);
 	.hero-wrapper {
 		display: flex;
 		flex-direction: column;
-		height: min(80vh, 600px);
+		min-height: 80vh;
+		overflow: hidden;
+
+		@media screen and (max-height: 400px) {
+			padding-bottom: 4rem;
+		}
+
+		.foxy {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 10rem;
+			height: auto;
+			animation: foxyRunAnimation 30s ease-in infinite;
+		}
+
+		@keyframes foxyRunAnimation {
+			0% {
+				left: -500rem;
+			}
+
+			100% {
+				left: 10000vw;
+			}
+		}
 	}
 
 	.wallpaper {
@@ -176,6 +236,8 @@ const t = useTranslations(locale);
 		gap: .8rem;
 
 		@media screen and (max-width: 500px) {
+			padding-inline: 2rem;
+			width: 100%;
 			flex-direction: column;
 
 			& > * > * {
@@ -272,7 +334,7 @@ const t = useTranslations(locale);
 		.section-content {
 			width: 100%;
 			max-width: 800px;
-			padding: 1rem;
+			padding: 1rem 2rem;
 		}
 
 		.section-header {
@@ -303,6 +365,47 @@ const t = useTranslations(locale);
 
 		.section-title {
 			margin-bottom: 1rem;
+		}
+	}
+
+	.aboutme {
+		display: flex;
+		gap: 1rem;
+		margin-block: .8rem 1.6rem;
+
+		.aboutme-text {
+			font-size: 1.05em;
+			line-height: 1.8em;
+			font-family: poppins, sans-serif;
+
+			span {
+				color: #f2b9ff;
+			}
+		}
+
+		.aboutme-image {
+			height: auto;
+			border-radius: 1rem;
+		}
+
+		@media screen and (min-width: 800px) {
+			.aboutme-text {
+				width: 0;
+				flex-grow: 1;
+			}
+
+			.aboutme-image {
+				width: 0;
+				flex-grow: 1;
+			}
+		}
+
+		@media screen and (max-width: 800px) {
+			flex-direction: column;
+
+			.aboutme-image {
+				width: 100%;
+			}
 		}
 	}
 </style>
