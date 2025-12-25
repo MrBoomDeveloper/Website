@@ -2,8 +2,8 @@
 import Html from "@layouts/Html.astro";
 import { locales } from "@i18n/translate";
 
-const url = Astro.url.toString();
-const site = url.substring(0, url.lastIndexOf("/"));
+const url = Astro.url;
+const site = `${url.protocol}://${url.host}`;
 ---
 
 <Html>
@@ -31,8 +31,7 @@ const site = url.substring(0, url.lastIndexOf("/"));
 		location.replace(`${site}/${selectedLocale ?? "en"}`)
 	</script>
 	
-	<h2>What are you doing here?</h2>
-	<p>You shouldn't to be here. Redirecting to the homepage...</p>
+	<h2>Redirecting to the homepage...</h2>
 </Html>
 
 <style>
