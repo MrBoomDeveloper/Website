@@ -1,18 +1,32 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n'
-import Html from '@layouts/Html.astro';
-import Header from '@components/Header.astro';
-import Button from '@components/Button.astro';
-import OutlinedButton from '@components/OutlinedButton.astro';
-import Input from '@components/Input.astro';
-import Footer from '@components/Footer.astro';
-import SendIcon from '@assets/send.svg'
+import { getRelativeLocaleUrl } from "astro:i18n";
+import Html from "@layouts/Html.astro";
+import Header from "@components/Header.astro";
+import Button from "@components/Button.astro";
+import OutlinedButton from "@components/OutlinedButton.astro";
+import Input from "@components/Input.astro";
+import Footer from "@components/Footer.astro";
+import AndroidIcon from "@assets/android.svg";
+import GradleIcon from "@assets/gradle.svg";
+import ReactIcon from "@assets/react.svg";
+import JavaIcon from "@assets/java.png";
+import LibgdxIcon from "@assets/libgdx.png";
+import LaravelIcon from "@assets/laravel.svg";
+import AstroIcon from "@assets/astro.svg";
+import TypeScriptIcon from "@assets/typescript.svg";
+import PhpIcon from "@assets/php.svg";
+import VueIcon from "@assets/vuedotjs.svg";
+import SendIcon from "@assets/send.svg";
+import FirebaseIcon from "@assets/firebase.svg";
+import ComposeIcon from "@assets/jetpackcompose.svg";
+import SassIcon from "@assets/sass.svg";
+import KotlinIcon from "@assets/kotlin.svg";
 import BocchiBurgerImage from "@assets/bocchi_burger.webp";
 import FoxyGif from "@assets/foxy.gif";
-import { getLocaleFromUrl, localeStaticPaths, useTranslations } from '@i18n/translate';
-import ContactForm from '@components/ContactForm.astro';
-import FeaturedProjects from '@components/FeaturedProjects.astro';
-import { Image } from 'astro:assets';
+import { getLocaleFromUrl, localeStaticPaths, useTranslations } from "@i18n/translate";
+import ContactForm from "@components/ContactForm.astro";
+import FeaturedProjects from "@components/FeaturedProjects.astro";
+import { Image } from "astro:assets";
 
 export const getStaticPaths = localeStaticPaths
 const locale = getLocaleFromUrl(Astro.url);
@@ -90,6 +104,128 @@ const t = useTranslations(locale);
 		<div class="section-content">
 			<div class="section-header">
 				<hr />
+				<h2 class="section-title">My skills</h2>
+				<hr />
+			</div>
+
+			<div class="skills">
+				<div class="skill">
+					<Image
+						style="filter: brightness(0) saturate(100%) invert(76%) sepia(98%) saturate(364%) hue-rotate(76deg) brightness(90%) contrast(90%);"
+						src={AndroidIcon} 
+						alt="Android" 
+						title="Android" />
+				</div>
+					
+				<div class="skill">
+					<Image
+						style="filter: brightness(0) saturate(100%) invert(71%) sepia(54%) saturate(7404%) hue-rotate(200deg) brightness(96%) contrast(99%);"
+						src={ComposeIcon} 
+						alt="Jetpack Compose / Compose Multiplatform" 
+						title="Jetpack Compose / Compose Multiplatform" />
+				</div>
+
+				<div class="skill">
+					<Image
+						style="filter: brightness(0) saturate(100%) invert(53%) sepia(51%) saturate(555%) hue-rotate(279deg) brightness(86%) contrast(83%);"
+						src={SassIcon} 
+						alt="Sass" 
+						title="Sass" />
+				</div>
+				
+				<div class="skill">
+					<Image
+						style="filter: brightness(0) saturate(100%) invert(12%) sepia(60%) saturate(1621%) hue-rotate(160deg) brightness(95%) contrast(98%);"
+						src={GradleIcon} 
+						alt="Gradle" 
+						title="Gradle" />
+				</div>
+					
+				<div class="skill">
+					<Image
+						style="filter: brightness(0) saturate(100%) invert(38%) sepia(100%) saturate(1941%) hue-rotate(253deg) brightness(96%) contrast(94%);"
+						src={AstroIcon} 
+						alt="Astro" 
+						title="Astro" />
+				</div>
+
+				<div class="skill">
+					<Image
+						style="filter: brightness(0) saturate(100%) invert(37%) sepia(95%) saturate(536%) hue-rotate(174deg) brightness(95%) contrast(87%);"
+						src={TypeScriptIcon} 
+						alt="TypeScript" 
+						title="TypeScript" />
+				</div>
+				
+				<!-- <div class="skill">
+					<Image
+						style="filter: brightness(0) saturate(100%) invert(48%) sepia(3%) saturate(4960%) hue-rotate(199deg) brightness(101%) contrast(87%);"
+						src={PhpIcon} 
+						alt="PHP" 
+						title="PHP" />
+				</div>
+
+				<div class="skill">
+					<Image
+						style="filter: brightness(0) saturate(100%) invert(62%) sepia(16%) saturate(4819%) hue-rotate(114deg) brightness(107%) contrast(60%);"
+						src={VueIcon} 
+						alt="Vue" 
+						title="Vue" />
+				</div>
+
+				<div class="skill">
+					<Image
+						style="filter: brightness(0) saturate(100%) invert(25%) sepia(100%) saturate(4701%) hue-rotate(6deg) brightness(108%) contrast(104%);"
+						src={LaravelIcon} 
+						alt="Laravel" 
+						title="Laravel" />
+				</div> -->
+
+				<div class="skill">
+					<Image
+						src={LibgdxIcon} 
+						alt="LibGDX" 
+						title="LibGDX" />
+				</div>
+
+				<div class="skill">
+					<Image
+						style="filter: brightness(0) saturate(100%) invert(74%) sepia(75%) saturate(603%) hue-rotate(163deg) brightness(101%) contrast(97%);"
+						src={ReactIcon} 
+						alt="React / React Natvie" 
+						title="React / React Native" />
+				</div>
+
+				<div class="skill">
+					<Image
+						style="filter: brightness(0) saturate(100%) invert(19%) sepia(65%) saturate(4528%) hue-rotate(12deg) brightness(96%) contrast(103%);"
+						src={FirebaseIcon} 
+						alt="Firebase" 
+						title="Firebase" />
+				</div>
+
+				<div class="skill">
+					<Image
+						style="filter: brightness(0) saturate(100%) invert(37%) sepia(65%) saturate(4680%) hue-rotate(240deg) brightness(103%) contrast(103%);"
+						src={KotlinIcon}
+						alt="Kotlin" 
+						title="Kotlin" />
+				</div>
+
+				<div class="skill">
+					<Image
+						src={JavaIcon} 
+						alt="Java" 
+						title="Java" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="section-content">
+			<div class="section-header">
+				<hr />
 				<h2 class="section-title">{t("aboutme")}</h2>
 				<hr />
 			</div>
@@ -105,7 +241,7 @@ const t = useTranslations(locale);
 		</div>
 	</div>
 
-	<div class="section">
+	<div class="section section-dim">
 		<div class="section-content projects">
 			<div class="section-header">
 				<hr />
@@ -117,7 +253,7 @@ const t = useTranslations(locale);
 		</div>
 	</div>
 
-	<div class="section section-dim">
+	<div class="section">
 		<div class="section-content contact">
 			<div class="section-header" style="margin-bottom: .4rem">
 				<h2 class="section-title">{t("contact_me")}</h2>
@@ -365,6 +501,21 @@ const t = useTranslations(locale);
 
 		.section-title {
 			margin-bottom: 1rem;
+		}
+	}
+
+	.skills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.6rem;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+
+		.skill {
+			img {
+				height: 3rem;
+				width: auto;
+			}
 		}
 	}
 
