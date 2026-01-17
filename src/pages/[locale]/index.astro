@@ -287,10 +287,7 @@ const t = useTranslations(locale);
 		flex-direction: column;
 		min-height: 100vh;
 		overflow: hidden;
-
-		@media screen and (max-height: 400px) {
-			padding-bottom: 4rem;
-		}
+		padding-bottom: 4rem;
 
 		.foxy {
 			position: absolute;
@@ -352,10 +349,12 @@ const t = useTranslations(locale);
 
 	.label {
 		color: #e159ff;
-		text-shadow: rgba(217, 48, 255, .5) 0 0 1rem;
-		font-family: poppins, sans-serif;
+		text-shadow: rgba(229, 111, 255, 0.75) 0 0 1rem;
 		font-weight: 600;
 		text-align: center;
+		font-size: 1.325em;
+		margin-bottom: .1rem;
+		font-family: "Nunito", sans-serif;
 
 		@media screen and (max-width: 500px) {
 			padding-inline: 2rem;
@@ -364,20 +363,20 @@ const t = useTranslations(locale);
 
 	.title {
 		text-align: center;
-		font-family: poppins, sans-serif;
-		font-weight: 800;
+		font-weight: 900;
 		font-size: 2.5em;
-		text-shadow: rgba(255, 255, 255, .25) 0 0 .2em;
+		text-shadow: rgba(255, 255, 255, .35) 0 0 .5em;
 	}
 
 	.description {
+		font-size: 1.2em;
 		margin-top: .4rem;
 		max-width: 500px;
 		line-height: 1.4em;
 		font-weight: 500;
-		font-family: poppins, sans-serif;
 		text-align: center;
 		color: #eedefa;
+		text-shadow: rgba(255, 255, 255, .5) 0 0 1em;
 	}
 
 	.actions {
@@ -385,7 +384,7 @@ const t = useTranslations(locale);
 		display: flex;
 		gap: .8rem;
 
-		@media screen and (max-width: 500px) {
+		@media screen and (max-width: 450px) {
 			padding-inline: 2rem;
 			width: 100%;
 			flex-direction: column;
@@ -393,6 +392,12 @@ const t = useTranslations(locale);
 			& > * > * {
 				width: 100%;
 			}
+		}
+
+		@media screen and (max-width: 300px) {
+			padding-inline: 0;
+			width: 100%;
+			flex-direction: column;
 		}
 	}
 
@@ -494,7 +499,6 @@ const t = useTranslations(locale);
 			padding-block: 1rem;
 
 			.section-title {
-				font-family: poppins, sans-serif;
 				font-size: 2em;
 				text-shadow: 0 0 1em rgba(255, 255, 255, 0.25);
 			}
@@ -546,7 +550,6 @@ const t = useTranslations(locale);
 				background-color: #d883ff;
 				color: black;
 				font-weight: 600;
-				font-family: poppins, sans-serif;
 				position: absolute;
 				padding-block: .35rem;
 				padding-inline: 1rem;
@@ -577,7 +580,6 @@ const t = useTranslations(locale);
 		.aboutme-text {
 			font-size: 1.05em;
 			line-height: 1.8em;
-			font-family: poppins, sans-serif;
 
 			span {
 				color: #f2b9ff;
